@@ -10,7 +10,9 @@ import stepDefinition.AbstractStepDef;
 public class Hooks extends AbstractStepDef {
     @Before("@UI")
     public void beforeUITest(){
-        driver= Singleton.getDriver();
+        driver = Singleton.getDriver();
+        driver.manage().window().maximize();
+
     }
 
 //    @After("@UI")
