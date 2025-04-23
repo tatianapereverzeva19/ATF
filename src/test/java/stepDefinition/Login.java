@@ -2,6 +2,7 @@ package stepDefinition;
 
 import Page.HomePage;
 import Page.LoginPage;
+import Util.DataKeys;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -10,7 +11,11 @@ import lombok.SneakyThrows;
 import org.junit.Assert;
 
 import static Actions.Action.*;
+import static Util.DataKeys.PASSWORD;
+import static Util.DataKeys.USERNAME;
 import static Util.HighlightElement.highlightElement;
+import static Util.ScenarioContext.getData;
+import static Util.ScenarioContext.saveData;
 import static Util.WaitUntil.waitUntil;
 import static org.junit.Assert.assertThat;
 
@@ -22,6 +27,7 @@ public class Login extends AbstractStepDef{
     navigate(loginPageUrl,driver);
     waitUntil(3);
     sendKey(loginPage.getUsernameField(),"Admin");
+    saveData(USERNAME,"Admin");
 
     }
     @And("user insert password")
@@ -35,7 +41,7 @@ public class Login extends AbstractStepDef{
         sendKey(loginPage.getFbEmail(), "admin1");
         sendKey(loginPage.getFbPass(), "1234");
         click(loginPage.getFbSubmit(), 2);*/
-
+saveData(DataKeys.PASSWORD, "admin123");
 
     }
 @When("user clicks on Login button")
@@ -54,6 +60,20 @@ public void userClickonLogonButton(){
  click(homePage.getUserMeniu(),1);
  waitUntil(5);
  click(homePage.getLogOut(),1);
+}
+
+@And("insert username")
+    public void insertUsername(){
+    waitUntil(3);
+    sendKey(loginPage.getUsernameField(),getData(USERNAME).toString());
+
+}
+
+@And("insert password")
+    public void insertPassword(){
+    waitUntil(3);
+    sendKey(loginPage.getPasswordField(), getData(PASSWORD).toString());
+
 }
 
 

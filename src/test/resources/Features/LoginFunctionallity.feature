@@ -6,4 +6,6 @@ Given user insert username
     When user clicks on Login button
     Then user is redirect to homepage
     And user clicks ob LogOut button
+    And insert username
+    And insert password
   Scenario: Invalid login functionality
